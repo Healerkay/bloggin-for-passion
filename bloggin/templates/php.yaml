@@ -23,9 +23,8 @@ spec:
         - name: PMA_ARBITRARY
           value: "1"
         - name: PMA_HOST
-          value: bloggin-mysql
+          value: mysql-service
 
-    
 ---
 apiVersion: v1
 kind: Service
