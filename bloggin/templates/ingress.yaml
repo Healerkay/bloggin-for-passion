@@ -16,7 +16,7 @@ spec:
         path: "/"
         backend:
           service:
-            name: bit-blog-service
+            name: bloggin-service
             port:
               number: 80
   - host: phpmyadmin.kloudninja.online 
@@ -34,4 +34,4 @@ spec:
       - hosts:
           - bloggin.kloudninja.online 
           - phpmyadmin.kloudninja.online
-        secretName: tls-2048-kibana
+        secretName: tls-2048-bloggin

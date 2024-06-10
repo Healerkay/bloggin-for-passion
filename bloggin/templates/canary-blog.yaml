@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: bloggin
+  name: canary-bloggin
 spec:
   replicas: {{ .Values.canaryReplica }}
   selector:
@@ -27,10 +27,7 @@ metadata:
   name: bloggin-service
 spec:
   selector:
-    app: bloggin-service
+    app: bloggin
   ports:
   - port: 80
-    protocol: TCP
     targetPort: 80
-    nodePort: 30080
-  type: NodePort

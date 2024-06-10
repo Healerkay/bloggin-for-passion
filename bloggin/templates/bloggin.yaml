@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: bloggin
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: bloggin
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: bloggin
-        image:  healerkay/bloggin:2
+        image:  'healerkay/bloggin:{{ .Values.image.tag }}'
         ports:
         - containerPort: 80
 
@@ -22,13 +22,15 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: bit-blog-service
+  name: bloggin-service
 spec:
   selector:
     app: bloggin
   ports:
   - port: 80
     targetPort: 80
+
+  # type: LoadBalancer
 
 
 
