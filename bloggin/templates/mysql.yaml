@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bloggin-mysql
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bloggin-mysql
+  template:
+    metadata:
+      labels:
+        app: bloggin-mysql
+    spec:
+      containers:
+      - name: bloggin-mysql
+        image: mysql:latest
+        ports:
+        - containerPort: 3306
+          # name: http
+        # volumeMounts:
+        # - name: bit-blog-storage 
+        #   mountPath: /usr/app/bitblog
+        env:
+        - name: MYSQL_ROOT_USER
+          value: root
+        - name: MYSQL_ROOT_PASSWORD
+          value: password
+        - name: MYSQL_DATABASE
+          value: blog_admin_db
+
+      # volumes:
+      # - name: bit-blog-storage
+      #   persistentVolumeClaim:
+      #     claimName: bit-blog-pvc
+
+
+---
+
+  apiVersion: v1
+  kind: Service
+  metadata:
+    name: mysql-service
+  spec:
+    selector:
+      app: mysql-servce
+    ports:
+    - port: 3306
+      targetPort: 3306
+      nodePort: 30083
+      protocol: TCP
+  
