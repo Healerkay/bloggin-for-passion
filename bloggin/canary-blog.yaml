@@ -15,10 +15,6 @@ spec:
       containers:
       - name: bloggin
         image: 'healerkay/bloggin:{{ .Values.canary.tag }}'
-        # resources:
-        #   limits:
-        #     memory: "128Mi"
-        #     cpu: "500m"
         ports:
         - containerPort: 80
 

@@ -124,7 +124,7 @@ jobs:
 
       - name: "Use helm to install our charts"
         run: |
-          helm upgrade --install bloggin bloggin -f bik/values.yaml --set canary.tag=${{ env.VERSION_NUMBER}} --set replicaCount=2 --set canaryReplica=2
+          helm upgrade --install bloggin bloggin -f bloggin/values.yaml --set canary.tag=${{ env.VERSION_NUMBER}} --set replicaCount=2 --set canaryReplica=2
 
 
  - name: "Announce the latest version of the deployment"
