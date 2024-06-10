@@ -61,7 +61,7 @@ jobs:
 
       - name: "Use helm to install our charts"
         run: |
-          helm upgrade --install bloggin bloggin -f bik/values.yaml --set image.tag=${{ env.VERSION_NUMBER}} --set replicaCount=3 --set canaryReplica=1
+          helm upgrade --install bloggin bloggin -f bloggin/values.yaml --set image.tag=${{ env.VERSION_NUMBER}} --set replicaCount=3 --set canaryReplica=1
 
 
 name: Simple App Deployment
@@ -124,4 +124,18 @@ jobs:
 
       - name: "Use helm to install our charts"
         run: |
-          helm upgrade --install bloggin bloggin -f bik/values.yaml --set image.tag=${{ env.VERSION_NUMBER}} --set replicaCount=2 --set canaryReplica=2
+          helm upgrade --install bloggin bloggin -f bik/values.yaml --set canary.tag=${{ env.VERSION_NUMBER}} --set replicaCount=2 --set canaryReplica=2
+
+
+ - name: "Announce the latest version of the deployment"
+        uses: dawidd6/action-send-mail@v3
+        with:
+          username: taiwoabatan1999@gmail.com
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          server_address: smtp.gmail.com
+          server_port: 465
+          secure: true
+          subject: "New Docker Image Version for bloggin Web App - canary Deployment"
+          to: "abatankehinde1999@gmail.com, taiwoabatan66@gmail.com"
+          from: Abatan Taiwo <taiwoabatan1999@gmail.com>
+          body: "New image build: healerkay/bloggin:${{ env.VERSION_NUMBER }}"

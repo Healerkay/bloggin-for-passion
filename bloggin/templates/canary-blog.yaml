@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: bloggin
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.canaryReplica }}
   selector:
     matchLabels:
       app: bloggin
@@ -14,17 +14,14 @@ spec:
     spec:
       containers:
       - name: bloggin
-<<<<<<< HEAD
-        image: healerkay/bloggin:2
-=======
-        image: 'healerkay/bloggin:{{ .Values.image.tag }}'
+        image: 'healerkay/bloggin:{{ .Values.canary.tag }}'
         # resources:
         #   limits:
         #     memory: "128Mi"
         #     cpu: "500m"
->>>>>>> origin/main
         ports:
         - containerPort: 80
+
 
 ---
 
@@ -34,7 +31,7 @@ metadata:
   name: bloggin-service
 spec:
   selector:
-    app: bloggin  # Corrected to match the deployment label
+    app: bloggin-service
   ports:
   - port: 80
     protocol: TCP
