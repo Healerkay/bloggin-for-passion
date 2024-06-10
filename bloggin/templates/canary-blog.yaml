@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: bloggin
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.canaryReplica }}
   selector:
     matchLabels:
       app: bloggin
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: bloggin
-        image: 'healerkay/bloggin:{{ .Values.image.tag }}'
+        image: 'healerkay/bloggin:{{ .Values.canary.tag }}'
         # resources:
         #   limits:
         #     memory: "128Mi"
@@ -24,6 +24,7 @@ spec:
 
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
