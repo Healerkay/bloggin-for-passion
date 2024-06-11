@@ -173,16 +173,19 @@ jobs:
             --set persistence.size=5Gi
 
           #Install SonarQube:
-
-          helm install sonarqube stable/sonarqube \
-            --set sonarqube.postgresql.enabled=true \
-            --set sonarqube.postgresql.postgresqlUsername=sonar \
-            --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
-            --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
+          helm install sonarqube sonarqube/sonarqube \
+            --set postgresql.enabled=false \
+            --set postgresql.postgresqlUsername=sonar \
+            --set postgresql.postgresqlPassword=sonarpassword \
+            --set postgresql.postgresqlDatabase=sonarqube \
+            --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql:5432/sonarqube \
             --set persistence.enabled=true \
             --set persistence.size=5Gi \
             --set service.type=LoadBalancer \
-            --set sonarqube.adminPassword=adminpassword  
+            --set service.port=80 \
+            --set sonarqube.service.internalPort=9000 \
+            --set sonarqube.adminPassword=adminpassword
+ 
 
       - name: "Use helm to install our charts"
         run: |
