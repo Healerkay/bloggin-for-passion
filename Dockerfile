@@ -23,4 +23,8 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql
 # Copy the PHP application files to the Apache web directory
 COPY . /var/www/html/
 
+RUN apt-get -y upgrade
+RUN apt-get -y update
+RUN apt-get -y install vim
+
 EXPOSE 80
