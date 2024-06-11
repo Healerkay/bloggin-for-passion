@@ -173,7 +173,7 @@ jobs:
             --set persistence.size=5Gi
 
           #Install SonarQube:
-          helm upgrade sonarqube-new sonarqube/sonarqube \
+          helm install sonarqube-new sonarqube/sonarqube \
             --set postgresql.enabled=false \
             --set postgresql.postgresqlUsername=sonar \
             --set postgresql.postgresqlPassword=sonarpassword \
