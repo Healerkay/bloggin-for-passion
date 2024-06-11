@@ -52,7 +52,7 @@ jobs:
 
       - name: "Connect to the cluster"
         run: |
-          aws eks update-kubeconfig --name <name>
+          aws eks update-kubeconfig --name cluster
 
 
       - name: "Install Helm"
@@ -66,18 +66,17 @@ jobs:
       - name: "Announce the latest version of the deployment"
         uses: dawidd6/action-send-mail@v3
         with:
-                username: taiwoabatan1999@gmail.com
+                username: taykeny94@gmail.com
                 password: ${{ secrets.EMAIL_PASSWORD }}
                 server_address: smtp.gmail.com
                 server_port: 465
                 secure: true
                 subject: "New Docker Image Version for bloggin Web App - canary Deployment"
                 to: "abatankehinde1999@gmail.com, taiwoabatan66@gmail.com"
-                from: Abatan Taiwo <taiwoabatan1999@gmail.com>
+                from: Abatan kehinde <taykeny94@gmail.com>
                 body: "New image build: healerkay/bloggin:${{ env.VERSION_NUMBER }}"
 
-
-canary: 
+ 
   canary-deployment:
     if: ${{ github.ref_name == 'canary' }}
     runs-on: ubuntu-latest
@@ -122,7 +121,7 @@ canary:
 
       - name: "Connect to the cluster"
         run: |
-          aws eks update-kubeconfig --name <name>
+          aws eks update-kubeconfig --name cluster
 
 
       - name: "Install Helm"
@@ -137,12 +136,12 @@ canary:
       - name: "Announce the latest version of the deployment"
         uses: dawidd6/action-send-mail@v3
         with:
-                username: taiwoabatan1999@gmail.com
+                username: taykeny94@gmail.com
                 password: ${{ secrets.EMAIL_PASSWORD }}
                 server_address: smtp.gmail.com
                 server_port: 465
                 secure: true
                 subject: "New Docker Image Version for bloggin Web App - canary Deployment"
                 to: "abatankehinde1999@gmail.com, taiwoabatan66@gmail.com"
-                from: Abatan Taiwo <taiwoabatan1999@gmail.com>
+                from: Abatan kehinde <taykeny94@gmail.com>
                 body: "New image build: healerkay/bloggin:${{ env.VERSION_NUMBER }}"
