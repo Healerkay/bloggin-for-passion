@@ -23,6 +23,32 @@ jobs:
       - name: "Create version number"
         run: |
           echo "VERSION_NUMBER=${RANDOM}" >> $GITHUB_ENV
+      - name: "install sonarqube scanner"
+        run: |
+          #Add the official SonarQube Helm chart repository to your Helm installation:
+          helm repo add stable https://charts.helm.sh/stable
+          helm repo update
+
+          #Install PostgreSQL:
+          helm install postgresql stable/postgresql \
+            --set postgresqlUsername=sonar \
+            --set postgresqlPassword=sonarpassword \
+            --set postgresqlDatabase=sonarqube \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi
+
+          #Install SonarQube:
+
+          helm install sonarqube stable/sonarqube \
+            --set sonarqube.postgresql.enabled=true \
+            --set sonarqube.postgresql.postgresqlUsername=sonar \
+            --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
+            --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi \
+            --set service.type=LoadBalancer \
+            --set sonarqube.adminPassword=adminpassword
+
       
       - name: "Build a Docker image from the repo v1"
         run:  | 
@@ -63,6 +89,8 @@ jobs:
       - name: "Use helm to install our charts"
         run: |
           helm upgrade --install bloggin bloggin -f bloggin/values.yaml --set image.tag=${{ env.VERSION_NUMBER}} --set replicaCount=3 --set canaryReplica=1
+
+      
       
       - name: "Announce the latest version of the deployment"
         uses: dawidd6/action-send-mail@v3
@@ -92,6 +120,34 @@ jobs:
       - name: "Create version number"
         run: |
           echo "VERSION_NUMBER=${RANDOM}" >> $GITHUB_ENV
+
+
+      
+      - name: "install sonarqube scanner"
+        run: |
+          #Add the official SonarQube Helm chart repository to your Helm installation:
+          helm repo add stable https://charts.helm.sh/stable
+          helm repo update
+
+          #Install PostgreSQL:
+          helm install postgresql stable/postgresql \
+            --set postgresqlUsername=sonar \
+            --set postgresqlPassword=sonarpassword \
+            --set postgresqlDatabase=sonarqube \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi
+
+          #Install SonarQube:
+
+          helm install sonarqube stable/sonarqube \
+            --set sonarqube.postgresql.enabled=true \
+            --set sonarqube.postgresql.postgresqlUsername=sonar \
+            --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
+            --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi \
+            --set service.type=LoadBalancer \
+            --set sonarqube.adminPassword=adminpassword
       
       - name: "Build a Docker image from the repo v1"
         run:  | 
