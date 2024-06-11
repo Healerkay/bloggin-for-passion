@@ -13,7 +13,7 @@ spec:
         app: bloggin
     spec:
       containers:
-      - name: bloggin
+      - name: canary-bloggin
         image: 'healerkay/bloggin:{{ .Values.canary.tag }}'
         ports:
         - containerPort: 80
