@@ -1,5 +1,5 @@
 
-# depploying using canary deployment
+# deployment using canary deployment
 
 name: Simple App Deployment
 on: 
