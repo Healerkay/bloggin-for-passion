@@ -25,7 +25,7 @@ jobs:
       
       - name: "Build a Docker image from the repo v1"
         run:  | 
-          docker build -t healerkay/bloggin:${{ env.VERSION_NUMBER}} .
+          sudo docker build -t healerkay/bloggin:${{ env.VERSION_NUMBER}} .
 
       - name: "Log into Docker Hub"
         uses: docker/login-action@v3
@@ -35,7 +35,7 @@ jobs:
 
       - name: "Push to Docker Hub"
         run: |
-          docker push healerkay/bloggin:${{ env.VERSION_NUMBER }}
+          sudo docker push healerkay/bloggin:${{ env.VERSION_NUMBER }}
 
       - name: "Install kubectl"
         uses: azure/setup-kubectl@v3
