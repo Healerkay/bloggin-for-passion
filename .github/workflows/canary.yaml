@@ -202,3 +202,8 @@ jobs:
                 to: "abatankehinde1999@gmail.com, taiwoabatan66@gmail.com"
                 from: Abatan kehinde <taykeny94@gmail.com>
                 body: "New image build: healerkay/bloggin:${{ env.VERSION_NUMBER }}"
+
+
+
+        #Hello word
+        
