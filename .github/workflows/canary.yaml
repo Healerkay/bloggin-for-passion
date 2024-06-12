@@ -160,19 +160,19 @@ jobs:
        
       - name: "install sonarqube scanner"
         run: |
-          #Add the official SonarQube Helm chart repository to your Helm installation:
-          helm repo add stable https://charts.helm.sh/stable
+          # Add the official SonarQube Helm chart repository to your Helm installation:
+          helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
           helm repo update
 
-          #Install PostgreSQL:
-          helm install postgresql stable/postgresql \
+          # Install PostgreSQL:
+          helm install postgresql bitnami/postgresql \
             --set postgresqlUsername=sonar \
             --set postgresqlPassword=sonarpassword \
             --set postgresqlDatabase=sonarqube \
             --set persistence.enabled=true \
             --set persistence.size=5Gi
 
-          #Install SonarQube:
+          # Install SonarQube:
           helm install sonarqube-new sonarqube/sonarqube \
             --set postgresql.enabled=false \
             --set postgresql.postgresqlUsername=sonar \
@@ -181,10 +181,36 @@ jobs:
             --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql:5432/sonarqube \
             --set persistence.enabled=true \
             --set persistence.size=5Gi \
-            --set service.type=LoadBalancer \
+            --set service.type=NodePort \
             --set service.port=80 \
             --set sonarqube.service.internalPort=9000 \
             --set sonarqube.adminPassword=adminpassword
+
+
+
+
+
+      - name: "install prometheus and grafana"
+        run: |
+          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+          helm repo update
+
+          helm install prometheus prometheus-community/prometheus \
+            --set server.persistentVolume.enabled=true \
+            --set server.persistentVolume.size=5Gi \
+            --set server.service.type=NodePort \
+            --set server.service.port=9090
+
+
+          helm repo add grafana https://grafana.github.io/helm-charts 
+          helm repo update
+
+          helm install grafana grafana/grafana \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi \
+            --set service.type=NodePort \
+            --set service.port=3000
+
  
 
       - name: "Use helm to install our charts"
