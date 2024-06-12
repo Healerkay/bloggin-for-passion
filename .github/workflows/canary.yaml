@@ -174,7 +174,8 @@ jobs:
             --set persistence.size=5Gi
 
           # Install SonarQube:
-          helm install sonarqube sonarqube/sonarqube \
+          # Install SonarQube with a unique release name
+          helm install --generate-name sonarqube/sonarqube \
             --set postgresql.enabled=false \
             --set postgresql.postgresqlUsername=sonar \
             --set postgresql.postgresqlPassword=sonarpassword \
@@ -186,6 +187,7 @@ jobs:
             --set service.port=80 \
             --set sonarqube.service.internalPort=9000 \
             --set sonarqube.adminPassword=adminpassword
+
 
 
 
