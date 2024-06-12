@@ -166,7 +166,7 @@ jobs:
           helm repo update
 
           # Install PostgreSQL:
-          helm install postgresql-sonarqube bitnami/postgresql \
+          helm upgrade --install postgresql-sonarqube bitnami/postgresql \
             --set postgresqlUsername=sonar \
             --set postgresqlPassword=sonarpassword \
             --set postgresqlDatabase=sonarqube \
@@ -174,7 +174,7 @@ jobs:
             --set persistence.size=5Gi
 
           # Install SonarQube:
-          helm install --generate-name sonarqube/sonarqube \
+          helm upgrade --install sonar sonarqube/sonarqube
             --set postgresql.enabled=false \
             --set postgresql.postgresqlUsername=sonar \
             --set postgresql.postgresqlPassword=sonarpassword \
