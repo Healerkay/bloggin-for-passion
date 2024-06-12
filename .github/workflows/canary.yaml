@@ -162,6 +162,7 @@ jobs:
         run: |
           # Add the official SonarQube Helm chart repository to your Helm installation:
           helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+          helm repo add bitnami https://charts.bitnami.com/bitnami
           helm repo update
 
           # Install PostgreSQL:
@@ -173,7 +174,7 @@ jobs:
             --set persistence.size=5Gi
 
           # Install SonarQube:
-          helm install sonarqube-new sonarqube/sonarqube \
+          helm install sonarqube sonarqube/sonarqube \
             --set postgresql.enabled=false \
             --set postgresql.postgresqlUsername=sonar \
             --set postgresql.postgresqlPassword=sonarpassword \
