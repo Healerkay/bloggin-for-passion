@@ -174,18 +174,19 @@ jobs:
             --set persistence.size=5Gi
 
           # Install SonarQube:
-          helm upgrade --install sonar sonarqube/sonarqube
-            --set postgresql.enabled=false \
-            --set postgresql.postgresqlUsername=sonar \
-            --set postgresql.postgresqlPassword=sonarpassword \
-            --set postgresql.postgresqlDatabase=sonarqube \
-            --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonar:5432/sonarqube \
-            --set persistence.enabled=true \
-            --set persistence.size=5Gi \
-            --set service.type=NodePort \
-            --set service.port=80 \
-            --set sonarqube.service.internalPort=9000 \
-            --set sonarqube.adminPassword=adminpassword
+            helm upgrade --install sonar sonarqube/sonarqube \
+              --set postgresql.enabled=false \
+              --set postgresql.postgresqlUsername=sonar \
+              --set postgresql.postgresqlPassword=sonarpassword \
+              --set postgresql.postgresqlDatabase=sonarqube \
+              --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonar:5432/sonarqube \
+              --set persistence.enabled=true \
+              --set persistence.size=5Gi \
+              --set service.type=NodePort \
+              --set service.port=80 \
+              --set sonarqube.service.internalPort=9000 \
+              --set sonarqube.adminPassword=adminpassword
+
 
 
 
