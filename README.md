@@ -78,7 +78,7 @@ A simple PHP Blogging platform
 ![img](./images/collo.png)
 
 ## Project status
-- project is complete  
+- project is complete 
 
 
 ## Contact
