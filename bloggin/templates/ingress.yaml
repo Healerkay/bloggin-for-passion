@@ -30,8 +30,33 @@ spec:
             port:
               number: 80
 
+  - host: promethheus.kloudninja.online 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: prometheus-server
+            port:
+              number: 80 
+
+    
+  - host: grafana.kloudninja.online 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: grafana
+            port:
+              number: 80                        
+
   tls:
       - hosts:
           - bloggin.kloudninja.online 
           - phpmyadmin.kloudninja.online
+          - promethheus.kloudninja.online
+          - grafana.kloudninja.online
         secretName: tls-2048-bloggin
