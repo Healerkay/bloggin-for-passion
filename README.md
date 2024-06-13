@@ -1,57 +1,87 @@
 # A Sample Responsive Blogging platform
 A simple PHP Blogging platform
 
-## Table of Contetnts
-* [General Info](#general-information)
-* [Technologies Used](#technologies-used)
-* [Features](#features)
-* [Screenshots](#screenshots)
-* [Setup](#setup)
-* [Project Status](#project-status)
+### Technologies to Use:
+* Kubernetes (EKS with eksctl)
+* Ingress with SSL Certificate  (Cert-Manager)  
 
-## General Information
-This is a blog and content management system,You can easily setup your blog and customize it according to your needs.This is a short description of your blog.You can change this
+* GitHub Actions for CI/CD
+* Docker for Containerization
+* Amazon Route 53 for DNS Management
+* MySQL for Database
+* phpMyAdmin for Database Management
+* Helm for Kubernetes Package Management
+* Kubernetes Secrets and ConfigMaps
+* OIDC for Authentication
+* Persistent Volume Claims (PVC) and Storage Class for Data Persistence
+* Sonarqube for continous integration && Testing
+* Srometheus && grafana
 
-## Technologies Used
-- PHP
-- Ajax
-- Javascript
-- CSS
-- HTML
-- Hack
+## Setup to deploy on Aws Eks
+1. write a docker compose file and build an image of it
+2. Set up your cluster
+3. Add OIDC and Ebsci driver for addons 
+4. confirm your setup is running
 
-## Screenshots
-![Screenshot from 2024-06-05 19-03-32](https://github.com/monyslim/bloggin-for-passion/assets/114629095/06d843fc-81af-435d-9f8a-fc2f75eae9ac)
+```
+ kubectl get pod -n kube-system
+ ```
 
-![Screenshot from 2024-06-05 19-03-42](https://github.com/monyslim/bloggin-for-passion/assets/114629095/90f7ae2b-78d9-4180-b0aa-84a39f5ec3b5)
+## setup for creating pipeline using github actions
+1. In the same directory as your source, create a .github and workflows folders
+2. create your configuration file (.yaml) in the workflows directory
+3. choose a deployment strategies, here we use the canary deployment
+4. write your configuration files and add necessary credentials to your secrets
+5. deploy your application
 
-![Screenshot from 2024-06-05 19-04-12](https://github.com/monyslim/bloggin-for-passion/assets/114629095/5f46e2fe-5268-4bad-81c6-99cf063db6a7)
-
-![Screenshot from 2024-06-05 19-59-49](https://github.com/monyslim/bloggin-for-passion/assets/114629095/32b15bf1-c672-47a4-930b-84eaf13b0211)
-
-![Screenshot from 2024-06-05 20-00-23](https://github.com/monyslim/bloggin-for-passion/assets/114629095/0b63dae6-8aff-46ba-9c66-b81ec119b829)
-
-![Screenshot from 2024-06-05 20-00-37](https://github.com/monyslim/bloggin-for-passion/assets/114629095/82c508dd-870b-4073-b8cc-6a692aab1e10)
+##
+![img](./images/Screenshot%202024-06-13%20at%2012.34.21.png)
 
 
-## Setup to test on XAMPP
-1. Install XAMPP or WAMPP
+## setup for ingress and cert-manager
+1. Add ingress controller repo
+2. Add cert-manager to make app secure
+3. Add the cert-issuer configuration file
+4. configure the ingress controller 
 
-2. Open XAMPP Control Panel and start [apache] and [mysql] .
+## Below is the outlook for the whole project
 
-3. Download project from github(https://github.com/monyslim/bloggin-for-passion.git)
+![img](./images/Screenshot%202024-06-11%20at%2000.30.10.png)
 
-4. Before cloning cd> /opt/lampp/htdocs then clone inside
+- The dns is mapped to name custom domain name
+- THe application is secured      
 
-5. Visit your the PHPMyAdmin to create a database by clicking on new at the side navbar
+![img](./images/Screenshot%202024-06-11%20at%2000.30.17.png)  
 
-6. Give it a database name called (blog_admin_sql) hit on create button.
+![img](./images/Screenshot%202024-06-11%20at%2000.30.20.png)
 
-7. After creating the database name click on import.
+## This project follows principle of devops
+1. Continuous integration - using Github/actions  
 
-8. Browse the file in directory [bloggin-for-passion/databasefile/blog_admin_db.sql] to import the database.
+![img](./images/bloggin.png)
 
-9. After importing successfully, open any browser and type http://localhost/bloggin-for-passion/
+2. Continous deployment/delivery     
 
-## Project Status
-Project is: _complete_
+![img](./images/Screenshot%202024-06-11%20at%2002.20.44.png)
+
+3. continous monitoring - using prometheus & grafan  
+
+![img](./images/WhatsApp%20Image%202024-06-13%20at%2014.07.01.jpeg)  
+
+![img](./images/WhatsApp%20Image%202024-06-13%20at%2014.07.01%20(1).jpeg)  
+
+
+![img](./images/WhatsApp%20Image%202024-06-13%20at%2014.07.02.jpeg) 
+
+4. continous collaboration - using github  
+
+![img](./images/collo.png)
+
+## Project status
+- project is complete  
+
+
+## Contact
+Created by [@Thecloudsavvy](https://github.com/thecloudsavvy) && [@Healerkay](https://github.com/healerkay) - feel free to contact us!
+
+
