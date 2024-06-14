@@ -204,26 +204,26 @@ jobs:
 
 
 
-      - name: "install prometheus and grafana"
-        run: |
-          helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-          helm repo update
+      # - name: "install prometheus and grafana"
+      #   run: |
+      #     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+      #     helm repo update
 
-          helm upgrade --install prometheus prometheus-community/prometheus \
-            --set server.persistentVolume.enabled=true \
-            --set server.persistentVolume.size=5Gi \
-            --set server.service.type=NodePort \
-            --set server.service.port=9090
+      #     helm upgrade --install prometheus prometheus-community/prometheus \
+      #       --set server.persistentVolume.enabled=true \
+      #       --set server.persistentVolume.size=5Gi \
+      #       --set server.service.type=NodePort \
+      #       --set server.service.port=9090
 
 
-          helm repo add grafana https://grafana.github.io/helm-charts \
-          helm repo update \
-          helm install my-grafana grafana/grafana \
-            # --namespace my-namespace \
-            --set persistence.enabled=true \
-            --set persistence.size=5Gi \
-            --set service.type=NodePort \
-            --set service.port=80
+      #     helm repo add grafana https://grafana.github.io/helm-charts \
+      #     helm repo update \
+      #     helm install my-grafana grafana/grafana \
+      #       # --namespace my-namespace \
+      #       --set persistence.enabled=true \
+      #       --set persistence.size=5Gi \
+      #       --set service.type=NodePort \
+      #       --set service.port=80
 
 
 
