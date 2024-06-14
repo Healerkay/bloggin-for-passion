@@ -110,7 +110,7 @@ jobs:
     if: ${{ github.ref_name == 'canary' }}
     runs-on: ubuntu-latest
     steps: 
-      - name: "first run job"
+      - name: "first test job"
         run: |
           echo "--- welcome to bloggin app ----"
       
