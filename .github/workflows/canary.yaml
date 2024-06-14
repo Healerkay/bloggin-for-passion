@@ -79,7 +79,7 @@ jobs:
 
       - name: "Connect to the cluster"
         run: |
-          aws eks update-kubeconfig --name cluster
+          aws eks update-kubeconfig --name my-cluster
 
 
       - name: "Install Helm"
@@ -150,7 +150,7 @@ jobs:
 
       - name: "Connect to the cluster"
         run: |
-          aws eks update-kubeconfig --name cluster
+          aws eks update-kubeconfig --name exciting-outfit-1718363984
 
 
       - name: "Install Helm"
@@ -173,19 +173,33 @@ jobs:
             --set persistence.enabled=true \
             --set persistence.size=5Gi
 
-          # Install SonarQube:
-          helm upgrade --install sonar sonarqube/sonarqube \
-            --set postgresql.enabled=false \
-            --set postgresql.postgresqlUsername=sonar \
-            --set postgresql.postgresqlPassword=sonarpassword \
-            --set postgresql.postgresqlDatabase=sonarqube \
-            --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonarqube-postgresql.default.svc.cluster.local:5432/sonarqube \
-            --set persistence.enabled=true \
-            --set persistence.size=5Gi \
-            --set service.type=NodePort \
-            --set service.port=80 \
-            --set sonarqube.service.internalPort=9000 \
-            --set sonarqube.adminPassword=adminpassword
+          # # Install SonarQube:
+          # helm upgrade --install sonar sonarqube/sonarqube \
+          #   --set postgresql.enabled=false \
+          #   --set postgresql.postgresqlUsername=sonar \
+          #   --set postgresql.postgresqlPassword=sonarpassword \
+          #   --set postgresql.postgresqlDatabase=sonarqube \
+          #   --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonarqube-postgresql.default.svc.cluster.local:5432/sonarqube \
+          #   --set persistence.enabled=true \
+          #   --set persistence.size=5Gi \
+          #   --set service.type=NodePort \
+          #   --set service.port=80 \
+          #   --set sonarqube.service.internalPort=9000 \
+          #   --set sonarqube.adminPassword=adminpassword
+
+
+            helm repo update
+            helm upgrade --install sonarqube sonarqube/sonarqube \
+              --set sonarqube.postgresql.enabled=true \
+              --set sonarqube.postgresql.postgresqlUsername=sonar \
+              --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
+              --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
+              --set persistence.enabled=true \
+              --set persistence.size=5Gi \
+              --set service.type=NodePort \
+              --set service.port=80 \
+              --set sonarqube.service.internalPort=9000 \
+              --set sonarqube.adminPassword=adminpassword
 
 
 
