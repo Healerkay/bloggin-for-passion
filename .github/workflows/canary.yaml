@@ -158,34 +158,34 @@ jobs:
         id: "install-helm"
 
        
-      - name: "install sonarqube scanner"
-        run: |
-          # Add the official SonarQube Helm chart repository to your Helm installation:
-          helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
-          helm repo add bitnami https://charts.bitnami.com/bitnami
-          helm repo update
+      # - name: "install sonarqube scanner"
+      #   run: |
+      #     # Add the official SonarQube Helm chart repository to your Helm installation:
+      #     helm repo add sonarqube https://SonarSource.github.io/helm-chart-sonarqube
+      #     helm repo add bitnami https://charts.bitnami.com/bitnami
+      #     helm repo update
 
-          # Install PostgreSQL:
-          helm upgrade --install postgresql-sonarqube bitnami/postgresql \
-            --set postgresqlUsername=sonar \
-            --set postgresqlPassword=sonarpassword \
-            --set postgresqlDatabase=sonarqube \
-            --set persistence.enabled=true \
-            --set persistence.size=5Gi
+      #     # Install PostgreSQL:
+      #     helm upgrade --install postgresql-sonarqube bitnami/postgresql \
+      #       --set postgresqlUsername=sonar \
+      #       --set postgresqlPassword=sonarpassword \
+      #       --set postgresqlDatabase=sonarqube \
+      #       --set persistence.enabled=true \
+      #       --set persistence.size=5Gi
 
-          # Install SonarQube:
-          helm upgrade --install sonar sonarqube/sonarqube \
-            --set postgresql.enabled=true \
-            --set postgresql.postgresqlUsername=sonar \
-            --set postgresql.postgresqlPassword=sonarpassword \
-            --set postgresql.postgresqlDatabase=sonarqube \
-            --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonarqube-postgresql.default.svc.cluster.local:5432/sonarqube \
-            --set persistence.enabled=true \
-            --set persistence.size=5Gi \
-            --set service.type=NodePort \
-            --set service.port=80 \
-            --set sonarqube.service.internalPort=9000 \
-            --set sonarqube.adminPassword=adminpassword
+      #     # Install SonarQube:
+      #     helm upgrade --install sonar sonarqube/sonarqube \
+      #       --set postgresql.enabled=true \
+      #       --set postgresql.postgresqlUsername=sonar \
+      #       --set postgresql.postgresqlPassword=sonarpassword \
+      #       --set postgresql.postgresqlDatabase=sonarqube \
+      #       --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonarqube-postgresql.default.svc.cluster.local:5432/sonarqube \
+      #       --set persistence.enabled=true \
+      #       --set persistence.size=5Gi \
+      #       --set service.type=NodePort \
+      #       --set service.port=80 \
+      #       --set sonarqube.service.internalPort=9000 \
+      #       --set sonarqube.adminPassword=adminpassword
 
 
             # helm repo update
