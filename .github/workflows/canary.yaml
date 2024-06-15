@@ -15,7 +15,7 @@ jobs:
     steps: 
       - name: "first run job"
         run: |
-          echo "--- welcome to bloggin app ----"
+          echo "--- welcome to bloggin app ---"
       
       - name: "Checkout"
         uses: actions/checkout@v4
