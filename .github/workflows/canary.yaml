@@ -216,14 +216,14 @@ jobs:
             --set server.service.port=9090
 
 
-      #     helm repo add grafana https://grafana.github.io/helm-charts \
-      #     helm repo update \
-      #     helm install my-grafana grafana/grafana \
-      #       # --namespace my-namespace \
-      #       --set persistence.enabled=true \
-      #       --set persistence.size=5Gi \
-      #       --set service.type=NodePort \
-      #       --set service.port=80
+          helm repo add grafana https://grafana.github.io/helm-charts \
+          helm repo update \
+          helm install my-grafana grafana/grafana \
+            # --namespace my-namespace \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi \
+            --set service.type=NodePort \
+            --set service.port=80
 
 
 
