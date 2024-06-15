@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: canary-bloggin
-        image: 'healerkay/bloggin:{{ .Values.canary.tag }}'
+        image: "{{ .Values.canary.repository }}:{{ .Values.canary.tag }}" 
         ports:
         - containerPort: 80
 

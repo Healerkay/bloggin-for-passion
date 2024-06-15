@@ -6,13 +6,13 @@ replicaCount: 1
 canaryReplica: 1
 
 image:
-  repository: nginx
+  repository: healerkay/bloggin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
 
 canary:
-  repository: nginx
+  repository: healerkay/bloggin
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
