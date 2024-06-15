@@ -207,7 +207,7 @@ jobs:
           #   --set jdbcOverwrite.jdbcUrl=jdbc:postgresql://postgresql-sonarqube-postgresql.default.svc.cluster.local:5432/sonarqube \
           #   --set persistence.enabled=true \
           #   --set persistence.size=5Gi \
-          #   --set service.type=NodePort \
+          #   --set service.type=LoadBalancer \
           #   --set service.port=80 \
           #   --set sonarqube.service.internalPort=9000 \
           #   --set sonarqube.adminPassword=adminpassword
