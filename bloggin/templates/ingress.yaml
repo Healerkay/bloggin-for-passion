@@ -50,7 +50,18 @@ spec:
           service:
             name: my-grafana
             port:
-              number: 80                       
+              number: 80 
+
+  - host: sonarqube.kloudninja.online 
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: sonarqube-sonarqube
+            port:
+              number: 9000                                   
 
   tls:
       - hosts:
@@ -58,6 +69,7 @@ spec:
           - phpmyadmin.kloudninja.online
           - promethheus.kloudninja.online
           - grafana.kloudninja.online
+          - sonarqube.kloudninja.online
         secretName: tls-2048-bloggin
 
         

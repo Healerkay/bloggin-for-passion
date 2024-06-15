@@ -157,6 +157,31 @@ jobs:
         uses: azure/setup-helm@v4.2.0
         id: "install-helm"
 
+
+      - name: "Install/Upgrade ingress-nginx"
+        run: |
+          helm repo add nginx-stable https://helm.nginx.com/stable
+          helm repo update
+          helm upgrade --install ingress-nginx ingress-nginx \
+            --repo https://kubernetes.github.io/ingress-nginx \
+            --namespace ingress-nginx --create-namespace
+
+            
+      - name: "Install and fetch cert-manager"
+        run: |
+          helm repo add jetstack https://charts.jetstack.io
+          helm install cert-manager jetstack/cert-manager \
+            --namespace cert-manager \
+            --create-namespace \
+            --version v1.11.0 \
+            --set installCRDs=true
+          helm fetch \
+            --repo https://charts.jetstack.io \
+            --untar \
+            --untardir charts \
+            cert-manager
+ 
+
        
       - name: "install sonarqube scanner"
         run: |
