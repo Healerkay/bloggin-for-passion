@@ -215,16 +215,17 @@ jobs:
 
           helm repo update
           helm upgrade --install sonarqube sonarqube/sonarqube \
-                --set sonarqube.postgresql.enabled=true \
-                --set sonarqube.postgresql.postgresqlUsername=sonar \
-                --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
-                --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
-                --set persistence.enabled=true \
-                --set persistence.size=5Gi \
-                --set service.type= NodePort \
-                --set service.port=80 \
-                --set sonarqube.service.internalPort=9000 \
-                --set sonarqube.adminPassword=adminpassword
+            --set sonarqube.postgresql.enabled=true \
+            --set sonarqube.postgresql.postgresqlUsername=sonar \
+            --set sonarqube.postgresql.postgresqlPassword=sonarpassword \
+            --set sonarqube.postgresql.postgresqlDatabase=sonarqube \
+            --set persistence.enabled=true \
+            --set persistence.size=5Gi \
+            --set service.type=NodePort \
+            --set service.port=80 \
+            --set sonarqube.service.internalPort=9000 \
+            --set sonarqube.adminPassword=adminpassword
+
 
 
 
