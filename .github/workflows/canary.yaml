@@ -198,7 +198,7 @@ jobs:
                 --set persistence.size=5Gi \
                 --set service.type=LoadBalancer \
                 --set service.port=80 \
-                # --set sonarqube.service.internalPort=9000 \
+                --set sonarqube.service.internalPort=9000 \
                 --set sonarqube.adminPassword=adminpassword
 
 
