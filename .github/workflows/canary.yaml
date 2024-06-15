@@ -216,7 +216,7 @@ jobs:
             --set server.service.port=9090
 
 
-          helm repo add grafana https://grafana.github.io/helm-charts \
+          helm repo add grafana https://grafana.github.io/helm-charts 
           helm repo update \
           helm install my-grafana grafana/grafana \
             # --namespace my-namespace \
