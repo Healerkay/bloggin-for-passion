@@ -1,7 +1,7 @@
 
 # deployment using canary deployment
 
-name: Simple Bloggin Deployment
+name: Simple Bloggin-web Deployment
 on: 
     push: 
       branches: 
